@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>product search</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form class="navbar-form navbar-left" role="search" action="/placetable" method="get">
+  <div class="form-group">
+    <input type="text" class="form-control" name="search" placeholder="Search productName">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<table class="table">
+
+
+ <thead>
+    <tr>
+      <th>product</th>
+      <th>quantity</th>
+      <th>gst</th>
+      <th>price</th>
+      <th>total price</th>
+    </tr>
+  </thead>
+
+  <%var len=result.length%>
+
+  <% for(var i=0;i<result.length;i++){%>
+     <tbody>
+    <tr>
+      <form name="addem" action="" id="addem" >
+      <td><%=result[i].product_name%></td>
+      <!--<td><input type="number" value="" name="quantity" id="quantity" onkeyup ="calculateTotal()" ></td>-->
+      <td><input type="number" id="<%=i%>" ></td>
+      <td><input type="number"  name="gst" value="<%=result[i].product_gst%>" id="two" readonly></td>
+      <td><input type="number"  name="price" value="<%=result[i].product_price%>" id="four" readonly></td>
+      <td><input type="textarea" name="totalprice" value="" id="three" readonly></td>
+      </form>
+    </tr>
+    </tbody>
+
+    <%}%>
+</table>
+<div id="l"><%=len%></div>
+<script type="text/javascript">
+ /* var len=document.getElementById("l").innerHTML;
+ var g=[]
+for (var i = 0; i < parseInt(len); i++) {
+  g.push(i)
+  console.log(g[i])
+}*/
+
+
+	document.getElementById("0").addEventListener("keyup",myFunction);
+function myFunction(){
+  var x = document.getElementById("0").value;
+    var y=document.getElementById("four").value;
+    var p=document.getElementById("two").value
+    var r=p/100
+    var q=(x*y)+(x*y*r)
+    document.getElementById("three").value=q
+}
+
+</script>
+</body>
+</html>
